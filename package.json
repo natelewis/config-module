@@ -1,7 +1,7 @@
 {
   "name": "config-module",
   "version": "1.0.1",
-  "description": "Configuration module loader that creates a default module if it does not exist.",
+  "description": "Configuration loader that creates a default module if it does not exist",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
