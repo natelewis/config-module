@@ -11,8 +11,8 @@ Once the config.js has been created on its first run, you can then change its va
 ```javascript
 const ConfigModule = require('config-module');
 
-// load config with or use the default the default
-// configuration passed in
+// load config or use the default configuration 
+// and save it as config.js
 const config = ConfigModule.load({
    service: {
        domain: 'https://some.place.com',
