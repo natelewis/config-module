@@ -2,7 +2,7 @@
 
 Configuration loader that creates a default config.js module if one does not exist.
 
-In general there is two states of the config.js.  Its either not present and creates one with the default configuration, or if it's already there, it will return the existing saved configuration.
+The config.js module it creates is either not present and one is created with the configuration passed, or if it's already there, it will return the existing saved configuration.
 
 Once the config.js has been created on its first run, you can then change its values to meet your requirements.
 
