@@ -1,10 +1,10 @@
 {
   "name": "config-module",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Configuration loader that creates a default module if it does not exist",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/natelewis/config-module/issues"
   },
-  "homepage": "https://github.com/natelewis/config-module#readme"
+  "homepage": "https://github.com/natelewis/config-module#readme",
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "mocha": "^3.5.0"
+  }
 }
