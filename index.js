@@ -48,36 +48,40 @@ const fs = require('fs');
  * // will display: https://some.place.com
  */
 
-module.exports.load = function (defaultConfig) {
-    // if nothing was passed, lets make an empty object
-    if (typeof (defaultConfig) === 'undefined') {
-        defaultConfig = {};
-    }
+module.exports.load = function(defaultConfig) {
+  // if nothing was passed, lets make an empty object
+  if (typeof(defaultConfig) === 'undefined') {
+    defaultConfig = {};
+  }
 
-    // the content of the actual config.js module
-    const configTemplate = 'var config = ' + JSON.stringify(defaultConfig, null, '\t') + '\nmodule.exports = config;\n';
+  // the content of the actual config.js module
+  const configTemplate = 'var config = '
+    + JSON.stringify(defaultConfig, null, '\t')
+    + '\nmodule.exports = config;\n';
 
-    // try to load the config, if we can't make one
-    try {
-        var config = require('./config');
-    } catch (e) {
-        if (e instanceof Error && e.code === 'MODULE_NOT_FOUND') {
-            // config not foune, make one
-            fs.writeFile('./config.js', configTemplate, function (err) {
-                if (err) {
-                    console.log('config: could not create config file ' + err);
-                    process.exit(1);
-                }
-            });
-        } else {
-            throw e;
+  // try to load the config, if we can't make one
+  let config
+  try {
+    config = require(process.cwd() + '/config.js');
+  } catch (e) {
+    if (e instanceof Error && e.code === 'MODULE_NOT_FOUND') {
+
+      // config not foune, make one
+      fs.writeFileSync('./config.js', configTemplate, function(err) {
+        if (err) {
+          console.log('config: could not create config file ' + err);
+          process.exit(1);
         }
+      });
+    } else {
+      throw e;
     }
+  }
 
-      // because we made a new module, return default
-    if (typeof (config) === 'undefined') {
-        config = defaultConfig;
-    }
+  // because we made a new module, return default
+  if (typeof(config) === 'undefined') {
+    config = defaultConfig;
+  }
 
-    return config;
+  return config;
 };
