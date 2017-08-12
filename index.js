@@ -66,13 +66,13 @@ module.exports.load = function(defaultConfig) {
   } catch (e) {
     if (e instanceof Error && e.code === 'MODULE_NOT_FOUND') {
 
-      // config not foune, make one
-      fs.writeFileSync('./config.js', configTemplate, function(err) {
-        if (err) {
+      // config not found, make one
+      try {
+        fs.writeFileSync('./config.js', configTemplate);
+      } catch(err) {
           console.log('config: could not create config file ' + err);
           process.exit(1);
-        }
-      });
+      }
     } else {
       throw e;
     }
